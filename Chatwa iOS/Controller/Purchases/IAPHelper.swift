@@ -15,28 +15,18 @@ open class IAPHelper : NSObject  {
     
     static let IAPHelperPurchaseNotification = "IAPHelperPurchaseNotification"
     fileprivate let productIdentifiers: Set<ProductIdentifier>
-    fileprivate var purchasedProductIdentifiers = Set<ProductIdentifier>()
     fileprivate var productsRequest: SKProductsRequest?
     fileprivate var productsRequestCompletionHandler: ProductsRequestCompletionHandler?
     
     public init(productIds: Set<ProductIdentifier>) {
         productIdentifiers = productIds
-        //Uncomment if using non-consumable products
-        /*
-        for productIdentifier in productIds {
-            let purchased = UserDefaults.standard.bool(forKey: productIdentifier)
-            if purchased {
-                purchasedProductIdentifiers.insert(productIdentifier)
-                print("Previously purchased: \(productIdentifier)")
-            } else {
-                print("Not purchased: \(productIdentifier)")
-            }
-        }
-         */
         super.init()
         SKPaymentQueue.default().add(self)
     }
     
+    deinit {
+        SKPaymentQueue.default().remove(self)
+    }
 }
 
 // MARK: - StoreKit API
@@ -57,11 +47,6 @@ extension IAPHelper {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }
-    
-    public func isProductPurchased(_ productIdentifier: ProductIdentifier) -> Bool {
-        return purchasedProductIdentifiers.contains(productIdentifier)
-    }
-    
     public class func canMakePayments() -> Bool {
         return SKPaymentQueue.canMakePayments()
     }
@@ -118,7 +103,6 @@ extension IAPHelper: SKPaymentTransactionObserver {
                 fail(transaction: transaction)
                 break
             case .restored:
-                restore(transaction: transaction)
                 break
             case .deferred:
                 break
@@ -130,38 +114,22 @@ extension IAPHelper: SKPaymentTransactionObserver {
     
     private func complete(transaction: SKPaymentTransaction) {
         print("complete...")
-        // deliverPurchaseNotificationFor(identifier: transaction.payment.productIdentifier)
+        deliverPurchaseNotificationFor(identifier: transaction.payment.productIdentifier)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
-    
-    private func restore(transaction: SKPaymentTransaction) {
-        guard let productIdentifier = transaction.original?.payment.productIdentifier else { return }
-        
-        print("restore... \(productIdentifier)")
-        // deliverPurchaseNotificationFor(identifier: productIdentifier)
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
+
     private func fail(transaction: SKPaymentTransaction) {
         print("fail...")
         if let transactionError = transaction.error as NSError? {
-            if transactionError.code != SKErrorCode.paymentCancelled.rawValue {
+            if transactionError.code != SKError.paymentCancelled.rawValue {
                 print("Transaction Error: \(String(describing: transaction.error?.localizedDescription))")
             }
         }
-        
+        deliverPurchaseNotificationFor(identifier: nil)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
-    // Uncomment if using non-consumable products
-    /*
     private func deliverPurchaseNotificationFor(identifier: String?) {
-        guard let identifier = identifier else { return }
-        
-        purchasedProductIdentifiers.insert(identifier)
-        UserDefaults.standard.set(true, forKey: identifier)
-        UserDefaults.standard.synchronize()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification), object: identifier)
     }
- */
 }

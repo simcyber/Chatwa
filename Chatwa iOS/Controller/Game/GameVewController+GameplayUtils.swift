@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 import AVFoundation
 
+extension GameViewController: GameplayDelegate {
+    func pattiesPurchased(_ numberOfPatties: Int) {
+        increasePattyCount(by: numberOfPatties)
+    }
+}
+
 extension GameViewController { // Functions used in Gameplay
     func playClickSound() {
         playAudio(player: clickSoundPlayer)

@@ -11,6 +11,10 @@ import CoreData
 import AVFoundation
 import AudioToolbox
 
+protocol GameplayDelegate {
+    func pattiesPurchased(_ numberOfPatties: Int) -> Void
+}
+
 class GameViewController: UIViewController { // Outlets and overriden functions
     @IBOutlet weak var hintLabel: UILabel!
     @IBOutlet weak var answerStackView: UIStackView!

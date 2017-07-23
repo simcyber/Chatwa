@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension GameViewController { // Functions primarily used to setup the Game UI Elements
+extension GameViewController{ // Functions primarily used to setup the Game UI Elements
     
     func loadAnswerAndGrid() { // Initial load of answer and bottom grid
         hintLabel.text = round!.hint

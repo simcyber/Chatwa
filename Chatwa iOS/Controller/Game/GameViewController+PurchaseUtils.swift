@@ -13,6 +13,8 @@ extension GameViewController {
     func showPattyPurchaseOption() {
         print("Options")
         if let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "PattyPurchaseOptionsViewController") as? PattyPurchaseOptionsViewController {
+            
+            popoverContent.gameplayDelegate = self
             let pattyPurchaseNavigationController = UINavigationController(rootViewController: popoverContent)
             pattyPurchaseNavigationController.modalPresentationStyle = .popover
             
