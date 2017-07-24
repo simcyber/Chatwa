@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UC7-TQ-UfR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UC7-TQ-UfR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,8 +37,17 @@
                                     <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="96"/>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Jamaican Patois Guessing Game " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cay-LA-fjd" userLabel="Slogan Label">
+                                <rect key="frame" x="16" y="321.5" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.25098039220000001" green="0.70196078429999997" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                </variation>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahY-Fb-yLB" userLabel="Instructions Button">
-                                <rect key="frame" x="122.5" y="479" width="130" height="35"/>
+                                <rect key="frame" x="122" y="476" width="130" height="35"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.78823529411764703" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="BQ3-Wt-1tS">
@@ -63,15 +72,6 @@
                                     <action selector="instructionsButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pkP-UP-Apd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Jamaican Patois Guessing Game " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cay-LA-fjd" userLabel="Slogan Label">
-                                <rect key="frame" x="16" y="321.5" width="343" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.25098039220000001" green="0.70196078429999997" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ov-vI-d0Q" userLabel="Play Button">
                                 <rect key="frame" x="122.5" y="421" width="130" height="35"/>
                                 <color key="backgroundColor" red="0.66666666669999997" green="0.78823529410000004" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,16 +89,36 @@
                                     <action selector="playButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jek-me-i2F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nc-qh-nSX" userLabel="Play Button">
+                                <rect key="frame" x="122" y="531" width="130" height="35"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.78823529410000004" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="24"/>
+                                <state key="normal" title="Leaderboard">
+                                    <color key="titleColor" red="0.25098039220000001" green="0.70196078429999997" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="18"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="52"/>
+                                </variation>
+                                <connections>
+                                    <action selector="leadboardButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIB-nh-cbj"/>
+                                </connections>
+                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7SP-sq-201">
-                                <rect key="frame" x="177.5" y="521.5" width="20" height="20"/>
+                                <rect key="frame" x="177" y="574" width="20" height="20"/>
                                 <color key="color" red="0.2360577583" green="0.58976167440000005" blue="0.13191848989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9Ov-vI-d0Q" firstAttribute="height" secondItem="ahY-Fb-yLB" secondAttribute="height" id="3Bs-aR-zLJ"/>
+                            <constraint firstItem="2nc-qh-nSX" firstAttribute="top" secondItem="ahY-Fb-yLB" secondAttribute="bottom" constant="20" id="3SJ-ul-TU0"/>
+                            <constraint firstItem="2nc-qh-nSX" firstAttribute="width" secondItem="ahY-Fb-yLB" secondAttribute="width" id="GiG-Qs-i6f"/>
                             <constraint firstItem="rYb-Kf-ok2" firstAttribute="centerX" secondItem="cay-LA-fjd" secondAttribute="centerX" id="IZl-Pg-ikG"/>
                             <constraint firstItem="cay-LA-fjd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kec-hU-2Qc"/>
+                            <constraint firstItem="2nc-qh-nSX" firstAttribute="height" secondItem="ahY-Fb-yLB" secondAttribute="height" id="Le5-Nu-Pnp"/>
                             <constraint firstItem="9Ov-vI-d0Q" firstAttribute="top" secondItem="cay-LA-fjd" secondAttribute="bottom" constant="75.5" id="Lwx-VD-1zf">
                                 <variation key="heightClass=compact-widthClass=compact" constant="40"/>
                             </constraint>
@@ -106,13 +126,14 @@
                                 <variation key="heightClass=compact-widthClass=compact" constant="20"/>
                             </constraint>
                             <constraint firstItem="cay-LA-fjd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QRG-R1-azH"/>
-                            <constraint firstItem="7SP-sq-201" firstAttribute="centerX" secondItem="ahY-Fb-yLB" secondAttribute="centerX" id="R5r-zz-x2E"/>
-                            <constraint firstItem="7SP-sq-201" firstAttribute="top" secondItem="ahY-Fb-yLB" secondAttribute="bottom" constant="7.3333333333333712" id="WGU-iv-6it"/>
+                            <constraint firstItem="7SP-sq-201" firstAttribute="top" secondItem="2nc-qh-nSX" secondAttribute="bottom" constant="8" id="b9O-33-x1t"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cay-LA-fjd" secondAttribute="trailing" id="fBy-nK-bHf"/>
                             <constraint firstItem="cay-LA-fjd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lMx-i9-yJY"/>
                             <constraint firstItem="ahY-Fb-yLB" firstAttribute="centerX" secondItem="9Ov-vI-d0Q" secondAttribute="centerX" id="lp7-hB-rgx"/>
                             <constraint firstItem="9Ov-vI-d0Q" firstAttribute="width" secondItem="ahY-Fb-yLB" secondAttribute="width" id="nNb-dT-66j"/>
-                            <constraint firstItem="ahY-Fb-yLB" firstAttribute="top" secondItem="9Ov-vI-d0Q" secondAttribute="bottom" constant="23" id="uAb-lW-nKq"/>
+                            <constraint firstItem="7SP-sq-201" firstAttribute="centerX" secondItem="2nc-qh-nSX" secondAttribute="centerX" id="o0L-R6-mkG"/>
+                            <constraint firstItem="2nc-qh-nSX" firstAttribute="centerX" secondItem="ahY-Fb-yLB" secondAttribute="centerX" id="opU-0b-3A4"/>
+                            <constraint firstItem="ahY-Fb-yLB" firstAttribute="top" secondItem="9Ov-vI-d0Q" secondAttribute="bottom" constant="20" id="uAb-lW-nKq"/>
                             <constraint firstItem="9Ov-vI-d0Q" firstAttribute="centerX" secondItem="cay-LA-fjd" secondAttribute="centerX" id="wva-sR-R4O"/>
                         </constraints>
                     </view>

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AVFoundation
+import GameKit
 
 extension GameViewController: GameplayDelegate {
     func pattiesPurchased(_ numberOfPatties: Int) {
@@ -101,9 +102,10 @@ extension GameViewController { // Functions used in Gameplay
     
     func nextRound() {
         UserDefaults.standard.set(getRoundNumber() + 1, forKey: "round")
-        let data = NSKeyedArchiver.archivedData(withRootObject:GridToAnswerIndexMap()) //archiving
+        let data = NSKeyedArchiver.archivedData(withRootObject:GridToAnswerIndexMap()) //archiving grid
         
         UserDefaults.standard.set(data, forKey: "purchasedLetters") // The letters the user has purchased, upperbound length of Constants.Values.maxLettersInAnswer
+        submitToGC()
     }
     
     func refreshPattyCountLabel() {
@@ -276,5 +278,20 @@ extension GameViewController { // Functions used in Gameplay
         hide(button: gridButton)
         
         checkAnswer()
+    }
+    
+    func submitToGC() {
+        let level = getRoundNumber()
+        
+        // Submit score to GC leaderboard
+        let levelInt = GKScore(leaderboardIdentifier: Constants.LEADERBOARD_ID)
+        levelInt.value = Int64(level)
+        GKScore.report([levelInt]) { (error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                print("Saved level to leadeboard")
+            }
+        }
     }
 }

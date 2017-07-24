@@ -12,6 +12,8 @@
 		0A20B73B1F0DAC4700659709 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A20B73A1F0DAC4700659709 /* UIView+Utils.swift */; };
 		0A20B7421F0DD53F00659709 /* GameViewController+SetupUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A20B7411F0DD53E00659709 /* GameViewController+SetupUtils.swift */; };
 		0A20B7441F0DD56100659709 /* GameVewController+GameplayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A20B7431F0DD56100659709 /* GameVewController+GameplayUtils.swift */; };
+		0A4238991F256D2F004F6904 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4238981F256D2F004F6904 /* GameKit.framework */; };
+		0A42389B1F256DBB004F6904 /* HomeViewController+GKGameCenterControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A42389A1F256DBB004F6904 /* HomeViewController+GKGameCenterControllerDelegate.swift */; };
 		0A4562911F14557A0011B873 /* GameViewController+PurchaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4562901F14557A0011B873 /* GameViewController+PurchaseUtils.swift */; };
 		0A4562961F151F4E0011B873 /* PattyPurchaseOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4562951F151F4E0011B873 /* PattyPurchaseOptionsViewController.swift */; };
 		0A4562981F1568F40011B873 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4562971F1568F40011B873 /* StoreKit.framework */; };
@@ -48,6 +50,8 @@
 		0A20B73A1F0DAC4700659709 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		0A20B7411F0DD53E00659709 /* GameViewController+SetupUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameViewController+SetupUtils.swift"; sourceTree = "<group>"; };
 		0A20B7431F0DD56100659709 /* GameVewController+GameplayUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GameVewController+GameplayUtils.swift"; sourceTree = "<group>"; };
+		0A4238981F256D2F004F6904 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		0A42389A1F256DBB004F6904 /* HomeViewController+GKGameCenterControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HomeViewController+GKGameCenterControllerDelegate.swift"; sourceTree = "<group>"; };
 		0A4562901F14557A0011B873 /* GameViewController+PurchaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+PurchaseUtils.swift"; sourceTree = "<group>"; };
 		0A4562951F151F4E0011B873 /* PattyPurchaseOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PattyPurchaseOptionsViewController.swift; sourceTree = "<group>"; };
 		0A4562971F1568F40011B873 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4238991F256D2F004F6904 /* GameKit.framework in Frameworks */,
 				27877E3D8F6667F0B48DC369 /* Pods_Chatwa_iOS.framework in Frameworks */,
 				0A4562981F1568F40011B873 /* StoreKit.framework in Frameworks */,
 			);
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				8ADD89D11ED77B9C0093E432 /* HomeViewController.swift */,
+				0A42389A1F256DBB004F6904 /* HomeViewController+GKGameCenterControllerDelegate.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 		F1DC57A3CE5C64F7BD75D4A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A4238981F256D2F004F6904 /* GameKit.framework */,
 				0A4562971F1568F40011B873 /* StoreKit.framework */,
 				A5C83F71223E4B72DB5BC86E /* Pods_Chatwa_iOS.framework */,
 			);
@@ -312,6 +319,9 @@
 						DevelopmentTeam = W52FYE629M;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -423,6 +433,7 @@
 				0A84022A1F0F175F00ED7847 /* Round+CoreDataProperties.swift in Sources */,
 				0A20B7441F0DD56100659709 /* GameVewController+GameplayUtils.swift in Sources */,
 				8ADD89D01ED77B9C0093E432 /* AppDelegate.swift in Sources */,
+				0A42389B1F256DBB004F6904 /* HomeViewController+GKGameCenterControllerDelegate.swift in Sources */,
 				0A8402291F0F175F00ED7847 /* Round+CoreDataClass.swift in Sources */,
 				0A45629A1F156A560011B873 /* IAPHelper.swift in Sources */,
 				0A84022D1F0F6D0900ED7847 /* SuccessViewController.swift in Sources */,

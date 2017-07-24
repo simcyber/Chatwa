@@ -9,11 +9,21 @@
 import UIKit
 import CoreData
 import AVFoundation
+import GameKit
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
-    lazy var clickSoundPlayer: AVAudioPlayer? = self.getClickSoundPlayer() 
+    lazy var clickSoundPlayer: AVAudioPlayer? = self.getClickSoundPlayer()
+    
+    // MARK:- Game Center Variables
+    
+    var gcEnabled = Bool() // Check if the user has Game Center enabled
+    var gcDefaultLeaderBoard = String() // Check the default leaderboardID
+    
+    var score = 0
+    
+    // IMPORTANT: replace the red string below with your own Leaderboard ID (the one you've set in iTunes Connect)
     
     // MARK:- Lifecycle 
     
@@ -24,6 +34,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authenticateLocalPlayer()
     }
 
     // MARK:- IBActions
@@ -49,6 +61,15 @@ class HomeViewController: UIViewController {
     @IBAction func instructionsButtonClicked(_ sender: Any) {
         playAudio(player: clickSoundPlayer)
         self.present(buildInstructionsAlertContoller(), animated: true, completion: nil)
+    }
+    
+    @IBAction func leadboardButtonClicked(_ sender: Any) {
+        playAudio(player: clickSoundPlayer)
+        let gcVC = GKGameCenterViewController()
+        gcVC.gameCenterDelegate = self
+        gcVC.viewState = .leaderboards
+        gcVC.leaderboardIdentifier = Constants.LEADERBOARD_ID
+        present(gcVC, animated: true, completion: nil)
     }
     
     // MARK:- Core Data
@@ -85,6 +106,32 @@ class HomeViewController: UIViewController {
         alertController.setValue(textInChalboardSEFont(text: Constants.StaticText.instructionsTitle as NSString, color: .black, size: 24), forKey: "attributedTitle")
         alertController.setValue(textInChalboardSEFont(text: Constants.StaticText.instructionsMessage as NSString, color: .letterColor, size: 12), forKey: "attributedMessage")
         return alertController
+    }
+    
+    func authenticateLocalPlayer() {
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+        
+        localPlayer.authenticateHandler = {(ViewController, error) -> Void in
+            if((ViewController) != nil) {
+                // 1. Show login if player is not logged in
+                self.present(ViewController!, animated: true, completion: nil)
+            } else if (localPlayer.isAuthenticated) {
+                // 2. Player is already authenticated & logged in, load game center
+                self.gcEnabled = true
+                
+                // Get the default leaderboard ID
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in
+                    if error != nil { print(error?.localizedDescription ?? "")
+                    } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
+                })
+                
+            } else {
+                // 3. Game center is not enabled on the users device
+                self.gcEnabled = false
+                print("Local player could not be authenticated!")
+                print(error?.localizedDescription ?? "")
+            }
+        }
     }
 }
 
